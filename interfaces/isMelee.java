@@ -1,6 +1,7 @@
 package interfaces;
 
 public interface isMelee {
-	public void meleeAttack();
-	public void meleeDefense();
+	public String getName();
+	public String meleeAttack();
+	public String meleeDefense();
 }

@@ -1,6 +1,7 @@
 package interfaces;
 
 public interface isMagic {
-	public void magicAttack();
-	public void magicDefense();
+	public String getName();
+	public String magicAttack();
+	public String magicDefense();
 }

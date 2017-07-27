@@ -1,14 +1,24 @@
+package classes;
+
 import classes.Debug;
 import interfaces.isMagic;
 
-public class Mage implements isMagic {
+public class Mage extends Character implements isMagic {
 	
-	public void magicAttack() {
-		
+	private final String name = "Mage";
+	
+	public String getName() {
+		return name;
 	}
 	
-	public void magicDefense() {
-		
+	public String magicAttack() {
+		String attack = "Fireball";
+		return attack;
+	}
+	
+	public String magicDefense() {
+		String defense = "Teleport";
+		return defense;
 	}
 
 }

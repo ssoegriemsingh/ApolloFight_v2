@@ -1,18 +1,19 @@
 package classes;
 
-import classes.Debug;
-
 public abstract class Character {
 	
-	public Character() {
-		
+	private final String name = "Character";
+	
+	public abstract String getName();
+	
+	public String attack() {
+		String attack = "Default attack";
+		return attack;
 	}
 	
-	public void print( String s ) {
-		System.out.println(s);
+	public String defense() {
+		String defense = "Default defense";
+		return defense;
 	}
 	
-	public void Greeting() {
-		print("Greeting");
-	}
 }
