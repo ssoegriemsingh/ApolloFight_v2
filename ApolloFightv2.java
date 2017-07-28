@@ -17,11 +17,19 @@ import java.util.ArrayList;
 
 public class ApolloFightv2 {
 
+	private static final String RANGED = "isRanged";
+	private static final String MAGIC = "isMagic";
+	private static final String MELEE = "isMelee";
+
 	public static void main(String[] args) {
 			ApolloFightv2 apolloFight = new ApolloFightv2();
 	}
 
 	private ApolloFightv2() {
+		createCharacters();
+	}
+
+	private void createCharacters() {
 		ArrayList<Character> characterList = new ArrayList<>();
 
 		Archer a = new Archer();
@@ -30,70 +38,54 @@ public class ApolloFightv2 {
 		Mage m = new Mage();
 		Paladin p = new Paladin();
 		Ranger r = new Ranger();
+		Ranger John = new Ranger();
 		// Rogue
 
-		characterList.addAll(Arrays.asList(a, d, k, m, p, r));
-
-		// for(Character character : characterList) {
-		// 	if (character instanceof isMagic) {
-		// 		isMagic magicChar = (isMagic)character;
-		// 		System.out.println("\n" + magicChar.getName());
-		// 		System.out.println("ATK: " + magicChar.magicAttack());
-		// 		System.out.println("DEF: " + magicChar.magicDefense());
-		// 	} else if (character instanceof isRanged) {
-		// 		isRanged rangedChar = (isRanged)character;
-		// 		System.out.println("\n" + rangedChar.getName());
-		// 		System.out.println("ATK: " + rangedChar.rangedAttack());
-		// 		System.out.println("DEF: " + rangedChar.rangedDefense());
-		// 	} else if (character instanceof isMelee) {
-		// 		isMelee meleeChar = (isMelee)character;
-		// 		System.out.println("\n" + meleeChar.getName());
-		// 		System.out.println("ATK: " + meleeChar.meleeAttack());
-		// 		System.out.println("DEF: " + meleeChar.meleeDefense());
-		// 	} else {
-		// 		System.out.println("\n" + character.getName());
-		// 		System.out.println("ATK: " + character.attack());
-		// 		System.out.println("DEF: " + character.defense());
-		// 	}
+		characterList.addAll(Arrays.asList(a, d, k, m, p, r, John));
 
 		for (Character character : characterList) {
-				System.out.println("\n" + character.getName());
+			displayCharacters(character);
+		}
+	}
 
-				int numberOfTypes = getNumberOfTypes(character);
+	private void displayCharacters(Character character) {
+		System.out.println("\n" + character.getName());
 
-				for (int i = 1; i <= numberOfTypes; i++) {
-					String characterType = getType(character, i);
-					Debug.log("Character type: " + characterType);
+		int numberOfTypes = getNumberOfTypes(character);
 
-					switch(characterType) {
-							case "isRanged":
-									isRanged rangedChar = (isRanged)character;
-									System.out.println("ATK: " + rangedChar.rangedAttack());
-									break;
-					}
-
-				}
-
-				//characterType.addAll(Arrays.asList(character.getClass().getInterfaces()));
-
-				//Debug.log(character.getClass().getInterfaces().getType());
-
-				// Debug.log(character.getClass().getInterfaces().length);
-				// Debug.log(Arrays.asList(character.getClass().getInterfaces()).get(0).getSimpleName());
+		for (int i = 0; i < numberOfTypes; i++) {
+			String characterType = getType(character, i);
+			switch(characterType) {
+				case RANGED:
+					isRanged rangedChar = (isRanged)character;
+					System.out.println("ATK: " + rangedChar.rangedAttack());
+					System.out.println("DEF: " + rangedChar.rangedDefense());
+					break;
+				case MAGIC:
+					isMagic magicChar = (isMagic)character;
+					System.out.println("ATK: " + magicChar.magicAttack());
+					System.out.println("DEF: " + magicChar.magicDefense());
+					break;
+				case MELEE:
+					isMelee meleeChar = (isMelee)character;
+					System.out.println("ATK: " + meleeChar.meleeAttack());
+					System.out.println("DEF: " + meleeChar.meleeDefense());
+					break;
+				default:
+					System.out.println("ATK: " + character.attack());
+					System.out.println("DEF: " + character.defense());
+					break;
+			}
 		}
 	}
 
 	private int getNumberOfTypes(Character c) {
 			int numberOfTypes = c.getClass().getInterfaces().length;
-
 			return numberOfTypes;
 	}
 
 	private String getType(Character c, int i) {
-
-			String type = Arrays.asList(c.getClass().getInterfaces()).get(i-1).getSimpleName();
-
+			String type = Arrays.asList(c.getClass().getInterfaces()).get(i).getSimpleName();
 			return type;
-
 	}
 }
